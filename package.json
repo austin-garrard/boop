@@ -1,0 +1,26 @@
+{
+  "name": "boop",
+  "version": "0.0.1",
+  "description": "who knows",
+  "main": "index.js",
+  "author": "agarrard <austin.w.garrard@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "fix": "standard --fix",
+    "server:build": "webpack --config config/webpack.config.server.js",
+    "server:start": "node dist/server.js"
+  },
+  "standard": {
+    "ignore": ["dist/"]
+  },
+  "dependencies": {
+    "koa": "^2.7.0"
+  },
+  "devDependencies": {
+    "standard": "^12.0.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
