@@ -10,11 +10,13 @@
     "fix": "standard --fix",
     "test": "yarn server:test",
     "server:build": "webpack --config ./src/server/webpack.config.js",
-    "server:start": "node dist/server.js",
-    "server:test": "jest --config ./src/server/jest.config.js"
+    "server:start": "node -r source-map-support/register dist/server.js",
+    "server:test": "cd src/server && jest"
   },
   "standard": {
-    "ignore": ["dist/"]
+    "ignore": [
+      "dist/"
+    ]
   },
   "dependencies": {
     "koa": "^2.7.0",
@@ -23,8 +25,13 @@
     "koa-route": "^3.2.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
     "jest": "^24.1.0",
+    "jest-webpack": "^0.5.1",
+    "source-map-support": "^0.5.10",
     "standard": "^12.0.1",
+    "supertest": "^3.4.2",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.2.3",
     "webpack-node-externals": "^1.7.2"

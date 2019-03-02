@@ -1,17 +1,7 @@
-import Koa from 'koa'
-import logger from 'koa-logger'
-import bodyParser from 'koa-bodyparser'
-import route from 'koa-route'
+import App from './app'
 
-const app = new Koa()
+const port = process.env.PORT || 3000
 
-app.use(logger())
-app.use(bodyParser())
-
-// response
-app.use(ctx => {
-  console.log(ctx.request.body)
-  ctx.body = 'Hello Koa'
+App().listen(port, () => {
+  console.log(`Listening on ${port}`)
 })
-
-app.listen(3000)

@@ -1,5 +1,18 @@
 /* eslint-env jest */
 
-it('works', () => {
-  expect(false).toEqual(false)
+import App from './app'
+import { testAgent } from '../util/testHelper'
+
+describe('server', () => {
+  const agent = testAgent(() => App({
+    logger: false
+  }))
+
+  it('works', () => {
+    return agent()
+      .get('/')
+      .expect(200, {
+        message: 'hello'
+      })
+  })
 })
