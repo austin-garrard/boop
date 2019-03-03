@@ -31,6 +31,7 @@ async function createRole() {
 }
 
 async function dropRole() {
+  console.log(`Dropping role ${config.db.user}`)
   await client.query(
     `DROP ROLE IF EXISTS ${config.db.user}`,
   )
@@ -55,6 +56,7 @@ async function createDatabase() {
 }
 
 async function dropDatabase() {
+  console.log(`Dropping database ${config.db.database}`)
   await client.query(
     `DROP DATABASE IF EXISTS ${config.db.database}`
   )
