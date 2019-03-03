@@ -1,16 +1,19 @@
 import Koa from 'koa'
 import logger from 'koa-logger'
 import bodyParser from 'koa-bodyparser'
+import { Pool } from 'pg'
+import config from './config'
 
-const defaultConfig = {
-  logger: logger()
+const defaultDependencies = {
+  logger: logger(),
+  db: new Pool(config.db)
 }
 
-export default function (config = defaultConfig) {
+export default function (dependencies = defaultDependencies) {
   const app = new Koa()
 
-  if (config.logger) {
-    app.use(config.logger)
+  if (dependencies.logger) {
+    app.use(dependencies.logger)
   }
 
   app.use(bodyParser())
