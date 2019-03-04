@@ -24,6 +24,7 @@ describe('server', () => {
         pathParams: { meep: 'blah' },
         queryParams: { beep: 'boop' }
       })
+      .expect('Etag', '1234')
   })
 
   it('has an offices api 2', () => {

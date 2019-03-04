@@ -41,44 +41,46 @@ function RouterBuilder (basePath) {
   }
 }
 
-// TODO extract common middleware function
 function getMiddleware (logic) {
-  return async function (ctx, next) {
-    const pathParams = ctx.params // from koa-router
-    const queryParams = ctx.request.query // from koa
-
-    const [status, responseBody] = await logic(pathParams, queryParams, ctx)
-
-    ctx.status = status
-    ctx.body = responseBody
-
-    await next()
-  }
+  return endpointMiddleware(logic, false)
 }
 
 function postMiddleware (logic) {
+  return endpointMiddleware(logic, true)
+}
+
+function endpointMiddleware (logic, provideRequestBody) {
   return async function (ctx, next) {
     const pathParams = ctx.params // from koa-router
     const queryParams = ctx.request.query // from koa
     const requestBody = ctx.request.body // from koa-bodyparser
 
-    const [status, responseBody] = await logic(requestBody, pathParams, queryParams, ctx)
+    const params = provideRequestBody
+      ? [requestBody, pathParams, queryParams, ctx]
+      : [pathParams, queryParams, ctx]
+
+    const [status, responseBody, headers] = await logic(...params)
 
     ctx.status = status
     ctx.body = responseBody
+    ctx.set(headers)
 
     await next()
   }
 }
 
-function success (body) {
-  return [200, body]
+function success (body, headers) {
+  return response(200, body, headers)
 }
 
-function failure (body) {
-  return [400, body]
+function failure (body, headers) {
+  return response(400, body, headers)
 }
 
-function error (body) {
-  return [500, body]
+function error (body, headers) {
+  return response(500, body, headers)
+}
+
+function response (statusCode, body = {}, headers = {}) {
+  return [statusCode, body, headers]
 }
