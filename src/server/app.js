@@ -13,7 +13,7 @@ const BaseApi = Api('/', builder => {
 
 export default function (dependencies = {
   logger: logger(),
-  db: null
+  officesDao: null
 }) {
   const app = new Koa()
 
@@ -23,7 +23,7 @@ export default function (dependencies = {
 
   app.use(RestEasy(
     BaseApi,
-    OfficesApi
+    OfficesApi(dependencies.officesDao)
   ))
 
   return app

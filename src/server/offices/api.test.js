@@ -1,11 +1,16 @@
 /* eslint-env jest */
 
+import config from '../config'
 import App from '../app'
-import { testAgent } from '../../util/testHelper'
+import { testAgent, testDao } from '../../util/testHelper'
+import OfficesDao from './dao'
 
-xdescribe('Offices API', () => {
+describe('Offices API', () => {
+  const officesDao = testDao(config.db, OfficesDao)
+
   const agent = testAgent(() => App({
-    logger: false
+    logger: false,
+    officesDao: officesDao()
   }))
 
   describe('GET /offices', () => {
@@ -16,12 +21,15 @@ xdescribe('Offices API', () => {
         address: '99 Madison Ave, New York, NY 10016'
       }
 
-      //      await createOffice(officeData)
+      await officesDao().create(officeData)
 
       await agent()
         .get('/offices')
         .expect(200, {
-          offices: []
+          offices: [{
+            id: 1,
+            ...officeData
+          }]
         })
     })
   })

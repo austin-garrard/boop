@@ -70,8 +70,8 @@ async function initAppDb () {
 }
 
 async function cleanAppDb () {
-  await dropRole()
   await dropDatabase()
+  await dropRole()
 }
 
 const args = process.argv.slice(2)

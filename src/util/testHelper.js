@@ -23,11 +23,11 @@ export function testAgent (createApp, config = {
 
 import { Client } from 'pg'
 
-export function testDb (config) {
+export function testDb (dbConfig) {
   let db
 
   beforeAll(async () => {
-    db = new Client(config)
+    db = new Client(dbConfig)
     await db.connect()
   })
 
@@ -36,4 +36,19 @@ export function testDb (config) {
   })
 
   return () => db
+}
+
+export function testDao (dbConfig, createDao) {
+  const db = testDb(dbConfig)
+  let dao
+
+  beforeAll(async () => {
+    dao = await createDao(db())
+  })
+
+  beforeEach(async () => {
+    await dao.clear()
+  })
+
+  return () => dao
 }

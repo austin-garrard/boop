@@ -14,7 +14,7 @@
     "db:clean": "./src/server/scripts/manageDb.js clean",
     "server:build": "webpack --config ./src/server/webpack.config.js",
     "server:start": "node -r source-map-support/register dist/server.js",
-    "server:test": "cd src/server && jest"
+    "server:test": "cd src/server && jest --runInBand"
   },
   "standard": {
     "ignore": [
