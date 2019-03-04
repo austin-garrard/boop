@@ -20,3 +20,20 @@ export function testAgent (createApp, config = {
 
   return () => request(server)
 }
+
+import { Client } from 'pg'
+
+export function testDb (config) {
+  let db
+
+  beforeAll(async () => {
+    db = new Client(config)
+    await db.connect()
+  })
+
+  afterAll(async () => {
+    await db.end()
+  })
+
+  return () => db
+}

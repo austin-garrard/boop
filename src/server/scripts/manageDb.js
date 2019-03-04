@@ -25,7 +25,7 @@ async function createRole () {
 
     // TODO can/need this be sanitized?
     await client.query(
-      `CREATE ROLE ${config.db.user} WITH PASSWORD '${config.db.password}'`
+      `CREATE ROLE ${config.db.user} WITH LOGIN PASSWORD '${config.db.password}'`
     )
 
     console.log('done.')

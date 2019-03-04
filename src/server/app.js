@@ -13,7 +13,7 @@ const BaseApi = Api('/', builder => {
 
 export default function (dependencies = {
   logger: logger(),
-  db: new Pool(config.db)
+  db: null
 }) {
   const app = new Koa()
 
