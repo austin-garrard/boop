@@ -8,7 +8,7 @@ const config = {
       user: 'dev',
       database: 'dev',
       password: 'secure',
-      ssl: false,
+      ssl: false
     },
     adminDb: {
       host: 'localhost',
@@ -16,8 +16,8 @@ const config = {
       user: 'postgres',
       database: 'postgres',
       password: null,
-      ssl: false,
-    },
+      ssl: false
+    }
   },
   test: {
     db: {
@@ -26,7 +26,7 @@ const config = {
       user: 'test',
       database: 'test',
       password: 'secure',
-      ssl: false,
+      ssl: false
     },
     adminDb: {
       host: 'localhost',
@@ -34,9 +34,9 @@ const config = {
       user: 'postgres',
       database: 'postgres',
       password: null,
-      ssl: false,
-    },
-  },
+      ssl: false
+    }
+  }
 }
 
 export default config[env]

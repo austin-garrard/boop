@@ -19,7 +19,7 @@ describe('server', () => {
   it('has an offices api', () => {
     return agent()
       .get('/offices/blah')
-      .query({beep: 'boop'})
+      .query({ beep: 'boop' })
       .expect(200, {
         pathParams: { meep: 'blah' },
         queryParams: { beep: 'boop' }
@@ -29,8 +29,8 @@ describe('server', () => {
   it('has an offices api 2', () => {
     return agent()
       .post('/offices/moop')
-      .send({blorp: 'morp'})
-      .query({beep: 'boop'})
+      .send({ blorp: 'morp' })
+      .query({ beep: 'boop' })
       .expect(200, {
         requestBody: { blorp: 'morp' },
         pathParams: { meep: 'moop' },

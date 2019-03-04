@@ -1,14 +1,19 @@
-import Router from 'koa-router'
+import KoaRouter from 'koa-router'
+import KoaBodyParser from 'koa-bodyparser'
+import KoaCompose from 'koa-compose'
 
 export {
-  BaseApi, Api, success, failure, error
+  RestEasy, Api, success, failure, error
 }
 
-const BaseApi = Api('/', builder => {
-  builder.get('/', () => success({ message: 'this should prolly be swagger docs' }))
-})
+function RestEasy (...apis) {
+  return KoaCompose([
+    KoaBodyParser(),
+    ...apis
+  ])
+}
 
-function Api(basePath, configure) {
+function Api (basePath, configure) {
   const builder = RouterBuilder(basePath)
 
   configure(builder)
@@ -17,7 +22,7 @@ function Api(basePath, configure) {
 }
 
 function RouterBuilder (basePath) {
-  const koaRouter = new Router({
+  const koaRouter = new KoaRouter({
     prefix: basePath
   })
 
@@ -30,7 +35,7 @@ function RouterBuilder (basePath) {
       koaRouter.post(path, postMiddleware(logic))
     },
 
-    build: function() {
+    build: function () {
       return koaRouter.routes()
     }
   }

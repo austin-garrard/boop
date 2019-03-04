@@ -3,7 +3,7 @@
 import request from 'supertest'
 
 export function testAgent (createApp, config = {
-  persistent: false,
+  persistent: false
 }) {
   const setup = config.persistent ? beforeAll : beforeEach
   const teardown = config.persistent ? afterAll : afterEach
