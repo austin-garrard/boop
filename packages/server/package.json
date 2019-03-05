@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "0.0.1",
+  "description": "who knows",
+  "main": "index.js",
+  "author": "agarrard <austin.w.garrard@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "setup": "./scripts/setup.sh",
+    "fix": "standard --fix",
+    "db:init": "./scripts/manageDb.js",
+    "db:clean": "./scripts/manageDb.js clean",
+    "build": "webpack --config ./webpack.config.js",
+    "start": "node -r source-map-support/register dist/server.js",
+    "test": "jest --runInBand"
+  },
+  "standard": {
+    "ignore": [
+      "dist/"
+    ]
+  },
+  "dependencies": {
+    "koa": "^2.7.0",
+    "koa-bodyparser": "^4.2.1",
+    "koa-compose": "^4.1.0",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "pg": "^7.8.1"
+  }
+}

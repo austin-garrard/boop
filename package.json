@@ -2,33 +2,12 @@
   "name": "boop",
   "version": "0.0.1",
   "description": "who knows",
-  "main": "index.js",
-  "author": "agarrard <austin.w.garrard@gmail.com>",
+  "author": "Austin Garrard",
   "license": "MIT",
-  "private": false,
-  "scripts": {
-    "setup": "./scripts/setup.sh",
-    "fix": "standard --fix",
-    "test": "yarn server:test",
-    "db:init": "./src/server/scripts/manageDb.js",
-    "db:clean": "./src/server/scripts/manageDb.js clean",
-    "server:build": "webpack --config ./src/server/webpack.config.js",
-    "server:start": "node -r source-map-support/register dist/server.js",
-    "server:test": "cd src/server && jest --runInBand"
-  },
-  "standard": {
-    "ignore": [
-      "dist/"
-    ]
-  },
-  "dependencies": {
-    "koa": "^2.7.0",
-    "koa-bodyparser": "^4.2.1",
-    "koa-compose": "^4.1.0",
-    "koa-logger": "^3.2.0",
-    "koa-router": "^7.4.0",
-    "pg": "^7.8.1"
-  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",

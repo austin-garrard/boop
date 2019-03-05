@@ -1,7 +1,7 @@
 /* eslint-env jest */
 
 import App from './app'
-import { testAgent } from '../util/testHelper'
+import { testAgent } from './testHelper'
 
 describe('server', () => {
   const agent = testAgent(() => App({

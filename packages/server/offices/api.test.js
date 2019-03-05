@@ -2,7 +2,7 @@
 
 import config from '../config'
 import App from '../app'
-import { testAgent, testDao } from '../../util/testHelper'
+import { testAgent, testDao } from '../testHelper'
 import OfficesDao from './dao'
 
 describe('Offices API', () => {

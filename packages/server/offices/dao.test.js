@@ -2,7 +2,7 @@
 
 import OfficesDao from './dao'
 import config from '../config'
-import { testDao, testDb } from '../../util/testHelper'
+import { testDao, testDb } from '../testHelper'
 
 describe('OfficesDao', () => {
   const db = testDb(config.db)
