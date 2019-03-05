@@ -1,6 +1,7 @@
 /* eslint-env jest */
 
 import request from 'supertest'
+import { Client } from 'pg'
 
 export function testAgent (createApp, config = {
   persistent: false
@@ -20,8 +21,6 @@ export function testAgent (createApp, config = {
 
   return () => request(server)
 }
-
-import { Client } from 'pg'
 
 export function testDb (dbConfig) {
   let db

@@ -33,4 +33,30 @@ describe('Offices API', () => {
         })
     })
   })
+
+  describe('POST /offices', () => {
+    it('creates an office', async () => {
+      const officeData = {
+        name: 'New York',
+        manager: 'Cool Cat',
+        address: '99 Madison Ave, New York, NY 10016'
+      }
+
+      await agent()
+        .post('/offices')
+        .send(officeData)
+        .expect(200, {
+          office: {
+            id: 1,
+            ...officeData
+          }
+        })
+
+      const officesFromDb = await officesDao().getAll()
+      expect(officesFromDb).toEqual([{
+        id: 1,
+        ...officeData
+      }])
+    })
+  })
 })

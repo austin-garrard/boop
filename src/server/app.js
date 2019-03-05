@@ -1,7 +1,4 @@
 import Koa from 'koa'
-import logger from 'koa-logger'
-import { Pool } from 'pg'
-import config from './config'
 import { RestEasy, Api, success } from './api'
 import OfficesApi from './offices/api'
 
@@ -11,8 +8,9 @@ const BaseApi = Api('/', builder => {
   }))
 })
 
+// TODO required vs optional deps
 export default function (dependencies = {
-  logger: logger(),
+  logger: null,
   officesDao: null
 }) {
   const app = new Koa()

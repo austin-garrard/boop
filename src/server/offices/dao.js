@@ -35,7 +35,6 @@ async function OfficesDao (db) {
         .then(() => data)
     },
 
-
     getAll: function () {
       return db.query('SELECT * FROM offices')
         .then(result => result.rows)
@@ -44,11 +43,9 @@ async function OfficesDao (db) {
           ...office.data
         })))
     },
-    
+
     clear: function () {
       return db.query(`TRUNCATE ${tableName} RESTART IDENTITY CASCADE`)
     }
   }
 }
-
-
